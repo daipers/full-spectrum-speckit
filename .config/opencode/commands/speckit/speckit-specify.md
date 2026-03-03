@@ -6,6 +6,8 @@ description: Create a detailed best-in-class specification for a workflow/pipeli
 
 You are creating a best-in-class workflow specification at `.specify/specs/[FEATURE_NAME]/spec.md`.
 
+All top-level sections must be split into individual markdown files in `.specify/specs/[FEATURE_NAME]/sections/` (one file per section). The `spec.md` file must be an index that links to each section file.
+
 **Philosophy**: Specs are operational contracts that can be validated automatically. If a spec can't drive scenario-based validation, it is not complete.
 
 ## Step 1: Identify the Feature
@@ -29,14 +31,16 @@ mkdir -p .specify/specs
 
 ```bash
 FEATURE_NAME="[YOUR-FEATURE-NAME]"
-mkdir -p ".specify/specs/$FEATURE_NAME"
+mkdir -p ".specify/specs/$FEATURE_NAME/sections"
 ```
 
 Replace `[YOUR-FEATURE-NAME]` with a descriptive name (e.g., `001-ci-pipeline`, `deploy-workflow`).
 
 ## Step 4: Create Best-in-Class Specification Document
 
-Create `.specify/specs/[FEATURE_NAME]/spec.md` with this comprehensive template:
+Create `.specify/specs/[FEATURE_NAME]/spec.md` as an index that links to every section file in `sections/`. Each top-level section must live in its own markdown file under `sections/` and begin with a `#` heading for that section.
+
+Use the template below, but split each `##` section into its own file (one file per section).
 
 ```markdown
 # <Workflow Name> Spec

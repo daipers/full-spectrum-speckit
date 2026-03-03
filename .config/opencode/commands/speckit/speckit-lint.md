@@ -16,16 +16,20 @@ $ARGUMENTS
 
 If no spec name is provided, ask the user which spec to validate.
 
-## Step 2: Locate Spec File
+## Step 2: Locate Spec Files
 
 ```bash
 FEATURE_NAME="[SPEC-NAME]"
-SPEC_PATH=".specify/specs/$FEATURE_NAME/spec.md"
+SPEC_DIR=".specify/specs/$FEATURE_NAME"
+SPEC_INDEX="$SPEC_DIR/spec.md"
+SECTIONS_DIR="$SPEC_DIR/sections"
 
-if [ -f "$SPEC_PATH" ]; then
-  echo "Found spec at: $SPEC_PATH"
+if [ -d "$SECTIONS_DIR" ]; then
+  echo "Found sections at: $SECTIONS_DIR"
+elif [ -f "$SPEC_INDEX" ]; then
+  echo "Found spec index at: $SPEC_INDEX"
 else
-  echo "ERROR: Spec not found at $SPEC_PATH"
+  echo "ERROR: Spec not found at $SPEC_DIR"
   echo "Usage: /speckit.lint [FEATURE_NAME]"
   exit 1
 fi
@@ -37,16 +41,16 @@ Parse the spec and check for required sections and content thresholds.
 
 ### Validation Logic
 
-Read the spec file and check these sections:
+Read the spec files and check these sections. Prefer section files in `sections/` when present; fall back to `spec.md` for legacy single-file specs.
 
 #### 1. Overview Check
 - **Required**: Section exists AND has >= 100 characters
-- **Pattern**: Look for "## Overview" heading
+- **Pattern**: Look for Overview section file or "## Overview" heading
 - **Threshold**: >= 100 chars of content under the heading
 
 #### 2. User Stories Check
 - **Required**: Section exists AND has >= 1 "Story:" pattern OR "- [ ]" (checkbox)
-- **Pattern**: Look for "## User Stories" or "### Stories" heading
+- **Pattern**: Look for User Stories section file or "## User Stories" / "### Stories" heading
 - **Threshold**: >= 1 occurrence of "Story:" keyword
 
 #### 3. Acceptance Criteria Check
@@ -66,12 +70,12 @@ Read the spec file and check these sections:
 
 #### 6. Dependencies Check
 - **Required**: Section exists (content optional)
-- **Pattern**: Look for "## Dependencies" or "## Dependency"
+- **Pattern**: Look for Dependencies section file or "## Dependencies" / "## Dependency"
 - **Threshold**: Section must exist
 
 #### 7. Out of Scope Check
 - **Required**: Section exists AND has >= 1 bullet point
-- **Pattern**: Look for "## Out of Scope" or "## Non-goals"
+- **Pattern**: Look for Out of Scope section file or "## Out of Scope" / "## Non-goals"
 - **Threshold**: >= 1 list item
 
 ## Step 4: Generate Report
