@@ -168,6 +168,22 @@ Create `.specify/specs/[FEATURE_NAME]/spec.md` with this template:
   }
 }
 ```
+
+### Step 3.3b: Parallel Section Drafting (Subagents)
+
+After the template skeleton exists, split section drafting across subagents, then merge into `spec.md` + `sections/` files.
+
+Suggested splits:
+- Subagent A: Overview, Purpose and scope, Goals, Non-goals
+- Subagent B: Architecture, Data flows, Inputs/Outputs
+- Subagent C: Workflow steps, Error handling, Idempotency
+- Subagent D: Security, Secrets handling, Observability, SLAs/SLOs
+- Subagent E: Testing strategy, Rollout/Rollback, Versioning, Acceptance criteria, Examples
+
+Rules:
+- All sections must follow the template headings exactly
+- Keep RFC 2119 language for requirements
+- Merge by section; do not overwrite other sections
 - Example input: ...
 
 ### Outputs
@@ -349,6 +365,10 @@ Or manually complete the 5-minute checklist from `speckit-review.md`:
 - If **Needs Refinement**: Return to Step 3.3
 - If **Ready**: Proceed to Phase 4
 
+### Step 3.5b: Parallel Review Support (Subagents)
+
+Run `/speckit.lint` and the human review checklist in parallel. If lint FAIL or review says Needs Refinement, reconcile and loop back to Step 3.3.
+
 ## Phase 4: Planning (Automated)
 
 ### Step 4.1: Ask Executor/Platform
@@ -396,6 +416,19 @@ steps:
         duration: 10s
     timeout: 1800s
 ```
+
+### Step 4.2b: Parallel Plan Drafting (Subagents)
+
+Split plan sections across subagents, then merge into a single `plan.md`:
+- Subagent A: Executor selection, step mapping, input/output binding
+- Subagent B: Retry/timeout, idempotency, artifact/state management
+- Subagent C: Security, secrets, compliance mapping
+- Subagent D: Observability, alerting, testing implementation
+- Subagent E: Phases, risks/mitigations, research notes, tech stack
+
+Merge rules:
+- Keep headings as in template
+- Resolve duplicates by choosing the most specific, spec-aligned content
 
 ## Idempotency Implementation
 - How idempotency keys are generated
@@ -584,6 +617,20 @@ Create `.specify/specs/[FEATURE_NAME]/tasks.md`:
 | 2.3 | R2 |
 ```
 
+### Step 5.1b: Parallel Task Drafting (Subagents)
+
+Draft tasks by phase in parallel, then merge into a single `tasks.md`:
+- Subagent A: Phase 1 (foundation)
+- Subagent B: Phase 2 (core implementation)
+- Subagent C: Phase 3 (validation)
+- Subagent D: Phase 4 (operational readiness)
+- Subagent E: Phase 5 (deployment)
+
+Merge rules:
+- Maintain sequential dependencies
+- Ensure each task has file paths, acceptance criteria, and verification
+- Validate the dependency graph after merge
+
 ## Phase 6: Implementation (Automated)
 
 ### Step 6.1: Execute Tasks in Order
@@ -593,6 +640,10 @@ For each task, follow this workflow:
 2. **Implement** - Write the code
 3. **Test** - Verify it works
 4. **Commit** - Save progress
+
+### Step 6.1b: Parallel Task Execution (Subagents)
+
+If tasks have no dependencies and touch separate files/subsystems, execute them in parallel waves using subagents. Define waves from the dependency graph and only parallelize within a wave.
 
 ### Step 6.2: Track Progress
 

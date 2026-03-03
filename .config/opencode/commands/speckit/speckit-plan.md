@@ -164,6 +164,19 @@ steps:
 
 ## Component Structure
 ```
+
+## Step 3b: Parallel Plan Drafting (Subagents)
+
+Draft plan sections in parallel, then merge into a single `plan.md`:
+- Subagent A: Executor selection, step mapping, input/output binding
+- Subagent B: Retry/timeout, idempotency, artifact/state management
+- Subagent C: Security, secrets, compliance mapping
+- Subagent D: Observability, alerting, testing implementation
+- Subagent E: Phases, risks/mitigations, research notes, tech stack
+
+Merge rules:
+- Preserve template headings and order
+- Resolve overlaps by keeping the most spec-aligned details
 src/
 ├── workflows/
 │   └── [workflow definitions]

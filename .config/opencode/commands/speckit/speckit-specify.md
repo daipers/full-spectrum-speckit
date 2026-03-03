@@ -104,6 +104,20 @@ Use the template below, but split each `##` section into its own file (one file 
 { "field1": "example", "field2": 10 }
 ```
 
+## Step 4b: Parallel Section Drafting (Subagents)
+
+Once the `sections/` files and `spec.md` index exist, draft sections in parallel and merge:
+- Subagent A: Overview, Purpose and scope, Goals, Non-goals
+- Subagent B: Architecture, Data flows, Inputs and outputs
+- Subagent C: Workflow steps, Error handling, Idempotency
+- Subagent D: Security, Secrets handling, Observability, SLAs/SLOs
+- Subagent E: Testing strategy, Rollout/Rollback, Versioning, Acceptance criteria, Examples, Appendices
+
+Rules:
+- Keep section headings exactly as in the template
+- Keep RFC 2119 language for requirements
+- Merge by section file to avoid overwrites
+
 ### Outputs
 - Output schema:
 ```json

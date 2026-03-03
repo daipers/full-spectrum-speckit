@@ -182,6 +182,20 @@ Phase 4:     4.1 → 4.2 → 4.3 → 4.4
 Phase 5:     5.1 → 5.2
 ```
 
+## Step 3b: Parallel Task Drafting (Subagents)
+
+Draft tasks by phase in parallel, then merge into a single `tasks.md`:
+- Subagent A: Phase 1 (foundation)
+- Subagent B: Phase 2 (core implementation)
+- Subagent C: Phase 3 (validation)
+- Subagent D: Phase 4 (operational readiness)
+- Subagent E: Phase 5 (deployment)
+
+Merge rules:
+- Preserve dependencies and acceptance criteria mapping
+- Ensure each task lists file paths and verification
+- Validate dependency graph after merge
+
 ## Acceptance Criteria Mapping
 
 | Task | Acceptance Criteria |

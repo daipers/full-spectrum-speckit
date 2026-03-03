@@ -51,6 +51,15 @@ For each task, follow this process:
 2. Test the functionality
 3. Check for errors/warnings
 
+### Parallel Execution (Subagents)
+
+If tasks have no dependencies and touch separate files/subsystems, execute them in parallel waves using subagents.
+
+Rules:
+- Build execution waves from the dependency graph in `tasks.md`
+- Only parallelize within a wave
+- Avoid parallel work that modifies the same files or closely-coupled modules
+
 ## Step 4: Progress Tracking
 
 Mark tasks as complete by updating the tasks.md:

@@ -16,6 +16,10 @@ Speckit is GitHub's toolkit for Spec-Driven Development (SDD). It provides a str
 4. **Tasks** - Break into actionable items
 5. **Implementation** - Build the feature
 
+Speckit supports parallel subagents when explicitly called out by command workflows. Parallelize only independent sections or tasks and merge by section or dependency wave.
+
+See `README.md` for the parallelization policy.
+
 ## Available Commands
 
 ### Core Workflow

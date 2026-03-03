@@ -11,6 +11,16 @@ Specs are **operational contracts** that can be validated automatically. Key pri
 - **RFC 2119 semantics**: MUST/SHOULD/MAY keywords are binding
 - **Schema validation**: JSON Schema Draft 2020-12 for machine validation
 
+## Parallelization Policy
+
+Speckit supports parallel subagents when explicitly called out by command workflows. Use parallelism only for independent sections or tasks and merge outputs by section or dependency wave.
+
+Rules:
+- Parallelize only within the same dependency wave
+- Avoid overlapping file ownership across subagents
+- Merge by section file for specs and by phase for tasks
+- Reconcile lint/review outcomes before moving forward
+
 ## Available Commands
 
 | Command | Description |
