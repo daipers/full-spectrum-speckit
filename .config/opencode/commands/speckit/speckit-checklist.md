@@ -204,3 +204,19 @@ Provide:
 1. Checklist completion status
 2. Items needing attention
 3. Recommendations
+
+## Usage Checklist (Prescriptive)
+
+When using this checklist:
+- [ ] Work top-to-bottom; do not skip sections
+- [ ] If any item is unchecked, add a spec change note
+- [ ] Require at least one example in Inputs/Outputs and Examples sections
+
+## Example Review Summary
+
+```markdown
+## Review Summary: auth-pipeline
+- Overall: Needs Work
+- Missing: Idempotency keys for deploy step, rollback triggers
+- Next: Update spec sections and re-run /speckit.lint
+```

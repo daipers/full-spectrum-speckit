@@ -191,3 +191,22 @@ Provide:
 2. Directory structure explained
 3. Next steps for user
 4. How to use Speckit commands
+
+## Init Checklist (Prescriptive)
+
+Before finishing init:
+- [ ] `.specify/memory/constitution.md` exists and has version metadata
+- [ ] `.specify/specs/` exists and is empty (ready for first spec)
+- [ ] `.specify/quickstart.md` links to all core commands
+- [ ] README references `.specify/quickstart.md`
+- [ ] Git repo initialized on main branch
+
+## Example Quickstart Snippet
+
+```markdown
+1. /speckit.constitution
+2. /speckit.specify Build a deploy pipeline
+3. /speckit.plan Use GitHub Actions
+4. /speckit.tasks
+5. /speckit.implement
+```

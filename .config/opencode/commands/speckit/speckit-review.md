@@ -199,3 +199,21 @@ Use manually or run:
 - `speckit-rubric.md`: Full rubric with detailed standards
 - `speckit-lint.md`: Automated validation tool
 - `speckit-specify.md`: Spec generation with refinement prompts
+
+## Review Completion Checklist (Prescriptive)
+
+Before finalizing the review:
+- [ ] Answered the 8 key questions (print section)
+- [ ] Identified at least one success metric or stated missing
+- [ ] Confirmed out-of-scope exists or flagged as missing
+- [ ] Verified error handling + rollback coverage
+
+## Example Review Outcome
+
+```markdown
+## Review Summary: deploy-pipeline
+- Needs refinement
+  - Section: Error handling
+  - Issue: Retriable vs non-retriable not defined
+  - Fix: Add failure taxonomy and retry policy table
+```

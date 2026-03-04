@@ -92,3 +92,19 @@ Provide:
 1. List of clarifications sought
 2. Answers received
 3. Changes made to the spec
+
+## Clarification Checklist (Prescriptive)
+
+Before closing the clarify loop:
+- [ ] Every vague term is replaced with measurable criteria
+- [ ] Each MUST requirement has explicit acceptance criteria
+- [ ] Edge cases are listed with expected behavior
+- [ ] Security, observability, and rollback questions answered
+
+## Example Clarification Entry
+
+```markdown
+### Q3: What should happen if dependency X is down?
+**A**: Retry twice with exponential backoff; if still failing, mark run failed and page on-call.
+**Decision Made**: 2026-03-03
+```

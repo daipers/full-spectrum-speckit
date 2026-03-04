@@ -18,3 +18,9 @@ Use parallel subagents when the workflow specifies parallel drafting or parallel
 
 Collaborate with the Product Manager agent through the configured chat channel.
 Focus on writing high-quality, specification-compliant code.
+
+Prescriptive checklist:
+- Ensure spec lint and review gates are passed before planning
+- Ensure plan includes security, observability, idempotency, rollback
+- Ensure tasks include verification steps and dependencies
+- Ensure implementation captures evidence for acceptance criteria

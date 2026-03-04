@@ -133,3 +133,19 @@ Provide:
 1. Analysis summary (MUST requirements coverage)
 2. Issues identified (missing sections)
 3. Recommendations (gaps to fill)
+
+## Analysis Checklist (Prescriptive)
+
+Before finalizing analysis.md:
+- [ ] Every MUST requirement is marked in plan/tasks/implementation
+- [ ] Every acceptance criterion is mapped to a test or verification
+- [ ] All required spec sections appear in spec and are addressed in plan/tasks
+- [ ] Gaps are actionable and tied to a specific file or task
+
+## Example Gap Recommendation
+
+```markdown
+Recommendation: Add observability tasks for metrics + alerting.
+Why: Spec defines SLIs but plan/tasks omit implementation.
+Suggested fix: Add Task 4.1/4.2 in tasks.md and update plan.md Observability section.
+```

@@ -247,3 +247,23 @@ Provide:
 2. Task phases
 3. Dependencies identified
 4. Validation/conformance tasks highlighted
+
+## Task Quality Checklist (Prescriptive)
+
+Before finishing `tasks.md`, verify:
+- [ ] Every task has a file path (or N/A with explicit reason)
+- [ ] Each task maps to at least one acceptance criterion or requirement
+- [ ] Each task has a verifiable check (command, artifact, or observable state)
+- [ ] Dependency graph has no cycles and respects prerequisites
+- [ ] Validation tasks exist for schema, tests, observability, rollback
+
+## Example Task (Well-Formed)
+
+```markdown
+#### Task 2.2: Retry & Timeout Configuration
+**Description**: Configure per-step retry policies and timeouts
+**File**: .specify/specs/[FEATURE]/plan.md (executor config block)
+**Acceptance Criteria**: R1 (MUST)
+**Dependencies**: Task 2.1
+**Verification**: Simulated failure triggers retry with expected backoff
+```

@@ -236,8 +236,8 @@ After generating all files:
 > - `.specify/specs/$PROJECT_NAME/tasks.md` - Task breakdown
 >
 > **Next steps:**
-> - Run `/speckit-implement` to start building
-> - Or `/speckit-plan` to customize the tech stack
+> - Run `/speckit.implement` to start building
+> - Or `/speckit.plan` to customize the tech stack
 
 ## Example Usage
 
@@ -250,3 +250,22 @@ Output:
 - Creates constitution
 - Creates "task-management-app" spec
 - Generates spec, plan, and tasks
+
+## Quick Spec Checklist (Prescriptive)
+
+Before presenting results:
+- [ ] Constitution includes version and dates
+- [ ] Spec includes overview, user stories, acceptance criteria
+- [ ] Plan includes executor/stack decision and phases
+- [ ] Tasks include dependencies and verification steps
+
+## Example Output Summary
+
+```markdown
+Created:
+- .specify/memory/constitution.md
+- .specify/specs/task-management-app/spec.md
+- .specify/specs/task-management-app/plan.md
+- .specify/specs/task-management-app/tasks.md
+Next: /speckit.plan to refine executor choices
+```

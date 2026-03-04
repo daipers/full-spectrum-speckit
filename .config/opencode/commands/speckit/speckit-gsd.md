@@ -200,3 +200,23 @@ Then offers: `/gsd-plan-phase 001-ci-pipeline`
 - GSD handles the execution, verification, and gap closure
 - Speckit lint/review can be run before bridging to ensure spec quality
 - The verification uses SPEC.md acceptance criteria as source of truth
+
+## Bridge Checklist (Prescriptive)
+
+Before running `/gsd-plan-phase`:
+- [ ] Spec has Goals, Requirements, Acceptance Criteria, Non-goals
+- [ ] CONTEXT.md includes Decisions, Deferred Ideas, Claude's Discretion
+- [ ] ROADMAP.md has a new phase entry
+
+## Example CONTEXT.md Snippet
+
+```markdown
+## Decisions
+- Use GitHub Actions (locked)
+
+## Deferred Ideas
+- Terraform automation
+
+## Claude's Discretion
+- Choose logging format for CI steps
+```

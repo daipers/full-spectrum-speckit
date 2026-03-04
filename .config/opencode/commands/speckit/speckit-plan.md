@@ -267,3 +267,26 @@ Provide:
 2. Key implementation decisions
 3. Mapping of spec requirements to executor configuration
 4. Implementation phases
+
+## Plan Quality Checklist (Prescriptive)
+
+Use this checklist before handing off to `/speckit.tasks`:
+- [ ] Every spec step has a mapped executor step with type
+- [ ] Inputs/outputs binding covers schema validation + artifact storage
+- [ ] Retry/timeouts are implemented per step and match spec
+- [ ] Idempotency mechanisms exist for all side-effect steps
+- [ ] Security includes identity + secrets injection + rotation
+- [ ] Observability includes logs + metrics + traces + alerts
+- [ ] Rollout/rollback steps are actionable and environment-specific
+- [ ] Testing includes unit/integration/e2e/chaos scope and owners
+
+## Example (Minimal Executor Mapping)
+
+```markdown
+## Step-to-Executor Mapping
+| Spec Step | Executor Step | Type |
+|-----------|--------------|------|
+| fetch-source | fetch | container |
+| run-tests | test | container |
+| deploy-prod | deploy | deploy |
+```

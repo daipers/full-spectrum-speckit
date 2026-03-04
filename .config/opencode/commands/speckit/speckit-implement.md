@@ -109,3 +109,28 @@ Provide progress updates:
 - Tasks completed: X/Y
 - Current task: [Name]
 - Issues encountered (if any)
+
+## Implementation Checklist (Prescriptive)
+
+Before starting:
+- [ ] Tasks.md is up-to-date with dependencies and verification steps
+- [ ] Plan/spec context is read and understood
+- [ ] Required secrets/credentials are available
+
+During execution:
+- [ ] Update the task status after each task completes
+- [ ] Run the verification step for each task
+- [ ] Record any deviations from the plan in task notes
+
+Before final completion:
+- [ ] All acceptance criteria have evidence (tests/logs/artifacts)
+- [ ] Observability signals verified (logs/metrics/traces)
+- [ ] Rollback steps are validated (in staging if possible)
+
+## Example Progress Update
+
+```markdown
+- Tasks completed: 5/12
+- Current task: Task 2.2 Retry & Timeout Configuration
+- Issues encountered: None
+```

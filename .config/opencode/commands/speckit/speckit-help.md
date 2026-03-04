@@ -130,6 +130,25 @@ project/
 - **Plan first** - Technical decisions affect everything
 - **Task small** - Smaller tasks = faster progress
 
+## Prescriptive Checklist
+
+Use this quick checklist to keep the workflow rigorous:
+- [ ] Constitution exists with required sections and version metadata
+- [ ] Spec includes all sections with concrete examples
+- [ ] Plan maps every spec step to executor steps
+- [ ] Tasks include verification and dependencies
+- [ ] Implementation includes tests and evidence for ACs
+
+## Example Command Sequence
+
+```bash
+/speckit.constitution
+/speckit.specify Build a nightly ETL workflow
+/speckit.plan Use Airflow with S3 artifacts
+/speckit.tasks
+/speckit.implement
+```
+
 ## Learn More
 
 - [Spec-Driven Development](https://github.github.com/spec-kit/)

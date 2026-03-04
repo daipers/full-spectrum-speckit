@@ -803,3 +803,11 @@ After all phases complete, provide:
 2. Plan highlights (executor, key decisions)
 3. Task count by phase
 4. Next steps for the user
+
+## Autopilot Checklist (Prescriptive)
+
+Before moving to the next phase:
+- [ ] Spec lint passes (PASS or WARN) and review completed
+- [ ] Plan includes retries, idempotency, security, observability
+- [ ] Tasks include verification steps and dependencies
+- [ ] Implementation produces evidence for each acceptance criterion

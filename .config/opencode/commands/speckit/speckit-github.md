@@ -149,3 +149,20 @@ Provide:
 1. Repository URL
 2. Next steps
 3. How to use Speckit commands
+
+## GitHub Setup Checklist (Prescriptive)
+
+Before finishing:
+- [ ] `gh` is authenticated and repo created
+- [ ] `.specify/` structure exists in repo
+- [ ] Constitution and quickstart created
+- [ ] README references the Speckit workflow
+- [ ] Initial commit pushed to `main`
+
+## Example Follow-up
+
+```markdown
+Repo ready. Next:
+1. /speckit.constitution
+2. /speckit.specify Build a CI pipeline
+```

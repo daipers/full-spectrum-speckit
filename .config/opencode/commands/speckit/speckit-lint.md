@@ -211,3 +211,17 @@ This command is called automatically in Phase 3 of the autopilot workflow:
 - `speckit-rubric.md`: Full rubric with detailed standards
 - `speckit-review.md`: Human review checklist for deeper validation
 - `speckit-specify.md`: Spec generation with refinement prompts
+
+## Lint Checklist (Prescriptive)
+
+Before reporting PASS/WARN/FAIL:
+- [ ] Section discovery checks both `sections/` and `spec.md`
+- [ ] Counts include headings and content under each section
+- [ ] Failures include exact missing sections and thresholds
+
+## Remediation Guidance
+
+If FAIL:
+- Return to `/speckit.specify` Step 4c and add missing sections
+If WARN:
+- Proceed only if missing sections are non-critical or explicitly N/A

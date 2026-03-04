@@ -243,6 +243,8 @@ Rules:
 - **Runbook**: [link or content]
 - **Ownership**: [team/on-call]
 
+Example: SLO burn rate alert pages on-call; runbook link provided.
+
 ## Performance and scalability
 - **Expected load**: [concurrent runs, frequency]
 - **Resource sizing**: [CPU/memory per step]
@@ -250,10 +252,14 @@ Rules:
 - **Backpressure behavior**: [what happens at limit]
 - **Capacity assumptions**: [based on what]
 
+Example: Max 20 concurrent runs; backpressure queues new runs.
+
 ## Dependency management
 - **External systems**: [list with versions]
 - **Compatibility constraints**: [version matrix]
 - **Failure behavior**: [what happens when dependency degrades]
+
+Example: Uses S3 API v2; on degradation, retries with backoff.
 
 ## Testing strategy
 - **Unit tests**: [coverage scope]
@@ -265,6 +271,8 @@ Rules:
 - **Schema validation**: [JSON Schema validation in CI]
 - **Conformance tests**: [DoD-based verification]
 - **Manual verification**: [what requires human check]
+
+Example: Schema validation runs in CI on every PR; manual verification required for rollback dry run.
 
 ## Rollout and rollback
 ### Rollout Plan
@@ -283,10 +291,14 @@ Rules:
 - **Backfill strategy**: [how to handle historical data]
 - **In-flight runs**: [how to handle during migration]
 
+Example: Backfill last 30 days; pause in-flight runs during cutover window.
+
 ## Compatibility
 - **Backward compatibility**: [input/output guarantees]
 - **Forward compatibility**: [client version matrix]
 - **Deprecation policy**: [how breaking changes are introduced]
+
+Example: v1 inputs accepted for 90 days; deprecations announced two releases ahead.
 
 ## Versioning
 - **Scheme**: [SemVer or API-style alpha/beta/stable]
@@ -313,6 +325,188 @@ Rules:
 ### Code Snippets
 [Minimal reference implementations]
 ```
+
+## Step 4c: Section Requirements (Prescriptive)
+
+For every section file in `sections/`, include the required elements and at least one concrete example. Use the checklists below when drafting and refining.
+
+### Overview
+- Required: problem statement, solution summary, outcomes, why now
+- Example: 3-8 sentences that name the workflow, trigger, and success outcomes
+- Checklist:
+  - [ ] Names the workflow/pipeline/automation
+  - [ ] States the pain/problem in plain language
+  - [ ] Defines the solution at a high level
+  - [ ] States measurable outcomes or success signals
+  - [ ] Explains why this is needed now
+
+### Purpose and scope
+- Required: in scope, out of scope, environments/blast radius
+- Example: “In scope: nightly ETL + alerting; Out of scope: ad-hoc backfills; Blast radius: prod data lake”
+- Checklist:
+  - [ ] In-scope items are explicit and testable
+  - [ ] Out-of-scope items prevent scope creep
+  - [ ] Blast radius names environments and affected systems
+
+### Audience and roles
+- Required: authors, reviewers, implementers, operators, escalation path
+- Example: “Operators: Data Eng on-call; Escalation: SRE after 2 failures”
+- Checklist:
+  - [ ] Every role has a named responsibility
+  - [ ] Escalation path defines who and when
+
+### Goals / Non-goals
+- Required: goals include metrics, non-goals include explicit exclusions
+- Example: “G1: 99.5% success rate over 30d; NG1: realtime processing”
+- Checklist:
+  - [ ] Each goal has a measurable metric
+  - [ ] Non-goals prevent ambiguous expectations
+
+### Non-functional requirements
+- Required: at least one performance, security, or accessibility requirement
+- Example: “Security: all secrets injected via Vault; no secrets in logs”
+- Checklist:
+  - [ ] Includes performance, security, or accessibility criteria
+
+### Requirements and traceability
+- Required: MUST/SHOULD/MAY with ticket + AC mapping
+- Example: “R1 (MUST): Encrypt artifacts (Ticket: SEC-12) (Acceptance: AC-3)”
+- Checklist:
+  - [ ] Every MUST has an acceptance criterion
+  - [ ] Tickets or tracking IDs exist for MUST/SHOULD
+
+### Architecture
+- Required: components, deployment model, trust boundaries, state
+- Example: “Trust boundary between CI runner and artifact store”
+- Checklist:
+  - [ ] Components are named with responsibilities
+  - [ ] Deployment model is explicit (cluster/account/namespace)
+  - [ ] Trust boundaries include identity and permissions
+  - [ ] State is classified (durable vs ephemeral)
+
+### Data flows
+- Required: parameter/artifact/external store flows, sensitivity classification
+- Example: “Artifacts stored in S3 with internal classification”
+- Checklist:
+  - [ ] Data movement between steps is explicit
+  - [ ] Sensitivity classification is stated
+
+### Inputs and outputs
+- Required: JSON Schema Draft 2020-12, examples
+- Example: include one valid and one invalid input
+- Checklist:
+  - [ ] Schema has `required` fields
+  - [ ] Example input/output matches schema
+  - [ ] Validation behavior is explicit
+
+### Preconditions / Postconditions
+- Required: success/failure/cancel states
+- Example: “On failure: partial artifacts deleted; on cancel: in-flight run marked canceled”
+- Checklist:
+  - [ ] Preconditions list secrets/permissions/dependencies
+  - [ ] Success/failure/cancel states are explicit
+
+### Workflow steps
+- Required: step graph + per-step definition
+- Example: step graph includes parallel branches and join
+- Checklist:
+  - [ ] Each step has inputs, outputs, timeout, retries
+  - [ ] Idempotency keys defined for side effects
+  - [ ] Secrets used are listed per step
+
+### Error handling / Idempotency
+- Required: retriable vs non-retriable, retry policy table
+- Example: “HTTP 429 retriable with exp backoff; 400 non-retriable”
+- Checklist:
+  - [ ] Failure taxonomy is explicit
+  - [ ] Retry limits and backoff are defined
+  - [ ] Deduplication rules are documented
+
+### Security / Secrets handling
+- Required: identity model, least privilege, secrets sources + injection
+- Example: “Service account: ci-runner; Secrets: Vault, injected as env vars”
+- Checklist:
+  - [ ] Identity and RBAC policies listed
+  - [ ] No secrets in code/logs invariant stated
+  - [ ] Rotation cadence defined
+
+### Observability / SLAs and SLOs
+- Required: logs, metrics, traces, SLO targets, alerting
+- Example: “SLO: 99.5% success over 30d; burn rate alert 10x”
+- Checklist:
+  - [ ] Correlation IDs specified
+  - [ ] SLIs and labels defined
+  - [ ] Alerts have severity and paging rules
+
+### Monitoring and alerting
+- Required: alerts table, runbook, ownership
+- Example: “SLO burn rate alert pages on-call; runbook link provided”
+- Checklist:
+  - [ ] Alerts include condition, severity, paging
+  - [ ] Runbook exists or is referenced
+  - [ ] Ownership is clear
+
+### Performance and scalability
+- Required: expected load, sizing, limits, backpressure
+- Example: “Max 20 concurrent runs; backpressure queues new runs”
+- Checklist:
+  - [ ] Expected load is quantified
+  - [ ] Concurrency limits are specified
+  - [ ] Backpressure behavior is documented
+
+### Dependency management
+- Required: external systems + versions, failure behavior
+- Example: “Uses S3 API v2; on degradation, retries with backoff”
+- Checklist:
+  - [ ] External systems listed with versions
+  - [ ] Failure behavior is defined
+  - [ ] Version constraints or N/A justification provided
+
+### Rollout / Rollback / Testing / Validation
+- Required: rollout strategy, rollback triggers/steps, test types
+- Example: “Canary 10% for 24h, rollback if error rate >2%”
+- Checklist:
+  - [ ] Rollout stages are enumerated
+  - [ ] Rollback triggers are measurable
+  - [ ] Test plan includes unit/integration/e2e/chaos
+
+### Validation plan
+- Required: schema validation, conformance tests, manual verification
+- Example: “CI runs schema validation; manual review for rollback steps”
+- Checklist:
+  - [ ] Schema validation is defined
+  - [ ] Conformance tests map to ACs
+  - [ ] Manual verification steps are listed
+
+### Migration
+- Required: state/data migration, backfill, in-flight handling
+- Example: “Backfill last 30 days; pause in-flight runs during cutover”
+- Checklist:
+  - [ ] Migration steps are defined
+  - [ ] Backfill strategy is explicit
+  - [ ] In-flight run handling is documented
+
+### Compatibility
+- Required: backward/forward compatibility, deprecation policy
+- Example: “v1 inputs accepted for 90 days; deprecations announced”
+- Checklist:
+  - [ ] Backward compatibility rules are stated
+  - [ ] Deprecation policy is defined
+
+### Versioning / Acceptance criteria / Examples / Appendices
+- Required: version scheme, ACs, golden + failure paths
+- Example: “AC-1: schema validation fails on missing field”
+- Checklist:
+  - [ ] Version + changelog entries exist
+  - [ ] Acceptance criteria are testable
+  - [ ] Examples include observability signals
+  - [ ] Golden and failure examples include input, output, and signals
+
+## Step 4d: Index Sanity Check
+
+Before moving on:
+- [ ] `spec.md` links to every section file in `sections/`
+- [ ] No section files are missing from the index
 
 ## Step 5: Prompt for Details
 
@@ -354,6 +548,20 @@ After generating spec, run quick content check before proceeding:
 - If section missing: "Add a Dependencies section listing external systems."
 
 **For each failed check, prompt user with specific question. Do not proceed to planning until all required sections pass.**
+
+## Step 5c: Spec Completion Checklist
+
+Before linting, verify the spec meets these minimums:
+- [ ] All section files exist under `sections/`
+- [ ] Spec index links match existing section files
+- [ ] Each section has at least one concrete example
+- [ ] All MUST requirements map to ACs
+- [ ] Inputs/outputs schemas validate with example payloads
+- [ ] Error handling + idempotency are both explicit
+- [ ] Observability includes logs + metrics + traces
+- [ ] Dependencies section exists and lists external systems
+- [ ] Examples include observability signals where applicable
+- [ ] Dependencies count is >= 1 or explicitly “None” with justification
 
 ## Step 6: Run Spec Lint
 

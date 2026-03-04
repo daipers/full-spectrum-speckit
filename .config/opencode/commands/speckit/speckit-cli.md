@@ -80,8 +80,23 @@ Ask the user:
 > 
 > - **A** - Install Speckit CLI (recommended for full experience)
 > - **B** - Use OpenCode commands only (manual setup)
-> - **C** - Run `/speckit-autopilot` for automated workflow
+> - **C** - Run `/speckit.autopilot` for automated workflow
 
 ## Output
 
 Based on user's choice, guide them to the appropriate next step.
+
+## CLI Setup Checklist (Prescriptive)
+
+If using the CLI:
+- [ ] `specify --help` runs successfully
+- [ ] New project initializes `.specify/` structure
+- [ ] OpenCode commands work in the project directory
+
+## Example Flow
+
+```bash
+specify init my-project --ai opencode
+cd my-project
+/speckit.constitution
+```

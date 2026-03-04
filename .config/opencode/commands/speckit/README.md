@@ -25,25 +25,44 @@ Rules:
 
 | Command | Description |
 |---------|-------------|
-| `/speckit-help` | Overview of Speckit workflow |
-| `/speckit-init` | Initialize a new Speckit project |
-| `/speckit-constitution` | Define project principles (best-in-class standards) |
-| `/speckit-specify` | Create best-in-class workflow specification |
-| `/speckit-plan` | Create implementation plan (executor-specific) |
-| `/speckit-tasks` | Generate task breakdown with validation tasks |
-| `/speckit-implement` | Execute implementation |
-| `/speckit-clarify` | Clarify ambiguities |
-| `/speckit-analyze` | Analyze spec-implementation consistency |
-| `/speckit-checklist` | Best-in-class quality checklist |
+| `/speckit.help` | Overview of Speckit workflow |
+| `/speckit.init` | Initialize a new Speckit project |
+| `/speckit.constitution` | Define project principles (best-in-class standards) |
+| `/speckit.specify` | Create best-in-class workflow specification |
+| `/speckit.plan` | Create implementation plan (executor-specific) |
+| `/speckit.tasks` | Generate task breakdown with validation tasks |
+| `/speckit.implement` | Execute implementation |
+| `/speckit.clarify` | Clarify ambiguities |
+| `/speckit.analyze` | Analyze spec-implementation consistency |
+| `/speckit.checklist` | Best-in-class quality checklist |
 
 ## Quick Start
 
-1. `/speckit-init` - Create a new Speckit project
-2. `/speckit-constitution` - Define project principles
-3. `/speckit-specify` - Describe what to build (workflow/pipeline/automation)
-4. `/speckit-plan` - Plan the implementation
-5. `/speckit-tasks` - Break into tasks with validation
-6. `/speckit-implement` - Build it!
+1. `/speckit.init` - Create a new Speckit project
+2. `/speckit.constitution` - Define project principles
+3. `/speckit.specify` - Describe what to build (workflow/pipeline/automation)
+4. `/speckit.plan` - Plan the implementation
+5. `/speckit.tasks` - Break into tasks with validation
+6. `/speckit.implement` - Build it!
+
+## Workflow Checklist (Prescriptive)
+
+Before moving between steps:
+- [ ] Constitution: principles + required sections are defined
+- [ ] Spec: all sections exist with examples and acceptance criteria
+- [ ] Plan: executor mapping, retries, idempotency, security, observability
+- [ ] Tasks: dependencies + verification steps documented
+- [ ] Implement: tests + verification evidence recorded
+
+## Example Flow
+
+```
+/speckit.constitution
+/speckit.specify Build a CI pipeline for monorepo releases
+/speckit.plan Use GitHub Actions with OIDC
+/speckit.tasks
+/speckit.implement
+```
 
 ## Required Spec Sections
 

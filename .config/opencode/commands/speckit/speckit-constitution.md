@@ -153,3 +153,20 @@ Provide a summary of:
 2. The version number
 3. Key governance requirements (validation, secrets, observability)
 4. Next steps for the user
+
+## Constitution Checklist (Prescriptive)
+
+Before finalizing:
+- [ ] All required spec sections are listed explicitly
+- [ ] RFC 2119 semantics are described
+- [ ] Validation and secrets discipline are included
+- [ ] Versioning rules are defined
+- [ ] Governance checklist is present
+
+## Example Principle (Well-Formed)
+
+```markdown
+### X. Change Safety
+- **Standard**: All changes MUST be reversible within one deploy cycle
+- **Rationale**: Reduces mean time to recovery during incidents
+```

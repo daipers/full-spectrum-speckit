@@ -144,6 +144,21 @@ Rate the spec on these dimensions (1-5):
 
 **Minimum passing score**: 20/30
 
+## Examples (Pass/Fail Signals)
+
+### Pass Example (Overview)
+"This workflow builds, tests, and deploys services on every merge. It reduces manual releases, improves reliability through automated gates, and targets 99.5% success over 30 days. It is needed now to support increased release cadence and reduce incident rate."
+
+### Fail Example (Overview)
+"We need a better pipeline." (Too short, lacks outcomes and context.)
+
+### Pass Example (Acceptance Criteria)
+- AC-1: Invalid input fails schema validation with error message
+- AC-2: Successful run emits `workflow_completed` log and metric
+
+### Fail Example (Acceptance Criteria)
+- AC-1: It works (not testable)
+
 ---
 
 ## References
