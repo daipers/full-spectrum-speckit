@@ -45,81 +45,73 @@ PHASE_DIR=".planning/phases/${PHASE_NAME}"
 mkdir -p "$PHASE_DIR"
 ```
 
-## Step 4: Generate Phase PLAN.md
+## Step 4: Create Phase CONTEXT.md for GSD Planner
 
-Create `${PHASE_DIR}/001-PLAN.md`:
+Create `${PHASE_DIR}/${PHASE_NAME}-CONTEXT.md` so `/gsd-plan-phase` can read the spec directly:
 
 ```markdown
----
-phase: ${PHASE_NAME}
-plan: "01"
-type: execute
-wave: 1
-depends_on: []
-autonomous: true
+# Phase Context: ${PHASE_NAME}
 
-must_haves:
-  truths:
-    - "[Truth 1 from spec]"
-    - "[Truth 2 from spec]"
-  artifacts:
-    - path: "[path to implement]"
-      provides: "[what it provides]"
-  key_links:
-    - from: "spec.md"
-      to: "implementation"
-      via: "GSD execution"
----
+## Source Spec
+- Spec file: `.specify/specs/${FEATURE}/spec.md`
+- Feature name: ${FEATURE}
 
-<objective>
-[Copy Overview from SPEC.md - what this feature does]
-</objective>
+## Overview
+[Copy Overview from SPEC.md]
 
-<context>
-# Source Specification
-- Spec file: .specify/specs/${FEATURE}/spec.md
-- Phase derived from Speckit specification
+## Goals
+[Copy Goals from SPEC.md]
 
-## Key Requirements from Spec
-[MUST requirements extracted from spec]
+## Requirements
+[Copy MUST/SHOULD/MAY requirements from SPEC.md]
+
+## Acceptance Criteria
+[Copy Acceptance Criteria from SPEC.md]
 
 ## Architecture
-[Architecture section from spec]
-</context>
+[Copy Architecture section from SPEC.md]
 
-<tasks>
+## Non-goals
+[Copy Non-goals from SPEC.md]
 
-<task type="auto">
-  <name>Task 1: [Task name from requirements]</name>
-  <files>[files to create/modify]</files>
-  <action>
-[Action derived from spec requirements]
-  </action>
-  <verify>[How to verify this task]</verify>
-  <done>[Completion criteria]</done>
-</task>
+## Decisions
+- [List any locked decisions from the spec]
 
-[tasks for each MUST requirement]
+## Deferred Ideas
+- [List any explicitly deferred ideas from the spec]
 
-</tasks>
-
-<verification>
-- [ ] [Verification item from spec]
-- [ ] [Verification item from spec]
-</verification>
-
-<success_criteria>
-- [Success criteria from spec's Acceptance Criteria]
-</success_criteria>
-
-<output>
-After completion, create summary in `${PHASE_DIR}/001-SUMMARY.md`
-</output>
+## Claude's Discretion
+- [List areas where implementation choices are open]
 ```
 
-## Step 5: Generate Verification Template
+## Step 5: Update ROADMAP.md
 
-Create `${PHASE_DIR}/001-VERIFICATION.md` template:
+Add the new phase to ROADMAP.md before planning:
+
+```bash
+# Use gsd-tools to add phase
+node ~/.config/opencode/get-shit-done/bin/gsd-tools.cjs roadmap add-phase "${PHASE_NAME}" --goal "[goal from spec overview]"
+```
+
+Or manually add to ROADMAP.md:
+```markdown
+## Phase N: ${PHASE_NAME}
+- **Goal**: [Overview from spec]
+- **Status**: [ ]
+- **Plans**: 1
+```
+
+## Step 6: Run GSD Plan-Phase
+
+Invoke the GSD planner so it can use the context + spec:
+
+```
+/gsd-plan-phase ${PHASE_NAME}
+```
+
+## Step 7: Generate Verification Template (Optional)
+
+If you want a verification template before execution, create `${PHASE_DIR}/001-VERIFICATION.md`:
 
 ```markdown
 ---
@@ -163,23 +155,7 @@ status: pending
 [Summary of verification]
 ```
 
-## Step 6: Update ROADMAP.md
-
-Add the new phase to ROADMAP.md:
-```bash
-# Use gsd-tools to add phase
-node ~/.config/opencode/get-shit-done/bin/gsd-tools.cjs roadmap add-phase "${PHASE_NAME}" --goal "[goal from spec overview]"
-```
-
-Or manually add to ROADMAP.md:
-```markdown
-## Phase N: ${PHASE_NAME}
-- **Goal**: [Overview from spec]
-- **Status**: [ ]
-- **Plans**: 1
-```
-
-## Step 7: Offer Execution
+## Step 8: Offer Execution
 
 After creating the phase, offer to execute:
 ```
@@ -197,7 +173,9 @@ Or to verify the plan first:
 ```
 /speckit.specify [feature]    → Creates .specify/specs/[feature]/spec.md
     ↓
-/speckit.gsd [feature]        → Creates .planning/phases/[feature]/
+/speckit.gsd [feature]        → Creates .planning/phases/[feature]/[feature]-CONTEXT.md
+    ↓
+/gsd-plan-phase [feature]     → Creates PLAN.md from spec context
     ↓
 /gsd-execute-phase [feature]  → Executes phase with GSD
     ↓
@@ -209,11 +187,10 @@ Or to verify the plan first:
 User types: `/speckit.gsd 001-ci-pipeline`
 
 This reads `.specify/specs/001-ci-pipeline/spec.md` and creates:
-- `.planning/phases/001-ci-pipeline/001-PLAN.md`
-- `.planning/phases/001-ci-pipeline/001-VERIFICATION.md`
+- `.planning/phases/001-ci-pipeline/001-ci-pipeline-CONTEXT.md`
 - Adds phase to ROADMAP.md
 
-Then offers: `/gsd-execute-phase 001-ci-pipeline`
+Then offers: `/gsd-plan-phase 001-ci-pipeline`
 
 ---
 
